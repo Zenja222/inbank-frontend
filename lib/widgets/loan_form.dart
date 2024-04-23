@@ -61,131 +61,132 @@ class _LoanFormState extends State<LoanForm> {
     final screenWidth = MediaQuery.of(context).size.width;
     final formWidth = screenWidth / 3;
     const minWidth = 500.0;
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: max(minWidth, formWidth),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  FormField<String>(
-                    builder: (state) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          NationalIdTextFormField(
-                            onChanged: (value) {
-                              setState(() {
-                                _nationalId = value ?? '';
-                                _submitForm();
-                              });
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 60.0),
-                  Text('Loan Amount: $_loanAmount €'),
-                  const SizedBox(height: 8),
-                  Slider.adaptive(
-                    value: _loanAmount.toDouble(),
-                    min: 2000,
-                    max: 10000,
-                    divisions: 80,
-                    label: '$_loanAmount €',
-                    activeColor: AppColors.secondaryColor,
-                    onChanged: (double newValue) {
-                      setState(() {
-                        _loanAmount = ((newValue.floor() / 100).round() * 100);
-                        _submitForm();
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: const [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 12),
-                          child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text('2000€')),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: max(minWidth, formWidth),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                FormField<String>(
+                  builder: (state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        NationalIdTextFormField(
+                          onChanged: (value) {
+                            setState(() {
+                              _nationalId = value ?? '';
+                              _submitForm();
+                            });
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                const SizedBox(height: 60.0),
+                Text('Loan Amount: $_loanAmount €'),
+                const SizedBox(height: 8),
+                Slider.adaptive(
+                  value: _loanAmount.toDouble(),
+                  min: 2000,
+                  max: 10000,
+                  divisions: 80,
+                  label: '$_loanAmount €',
+                  activeColor: AppColors.secondaryColor,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      _loanAmount = ((newValue.floor() / 100).round() * 100);
+                      _submitForm();
+                    });
+                  },
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: const [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 12),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text('2000€')),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 12),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text('10000€'),
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 12),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text('10000€'),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 24.0),
-                  Text('Loan Period: $_loanPeriod months'),
-                  const SizedBox(height: 8),
-                  Slider.adaptive(
-                    value: _loanPeriod.toDouble(),
-                    min: 12,
-                    max: 60,
-                    divisions: 40,
-                    label: '$_loanPeriod months',
-                    activeColor: AppColors.secondaryColor,
-                    onChanged: (double newValue) {
-                      setState(() {
-                        _loanPeriod = ((newValue.floor() / 6).round() * 6);
-                        _submitForm();
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: const [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 12),
-                          child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text('6 months')),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 24.0),
+                Text('Loan Period: $_loanPeriod months'),
+                const SizedBox(height: 8),
+                Slider.adaptive(
+                  value: _loanPeriod.toDouble(),
+                  min: 12,
+                  max: 60,
+                  divisions: 40,
+                  label: '$_loanPeriod months',
+                  activeColor: AppColors.secondaryColor,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      _loanPeriod = ((newValue.floor() / 6).round() * 6);
+                      _submitForm();
+                    });
+                  },
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: const [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 12),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text('12 months')),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 12),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text('60 months'),
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 12),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text('60 months'),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 24.0),
-                ],
-              ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 24.0),
+              ],
             ),
           ),
-          const SizedBox(height: 16.0),
-          Column(
-            children: [
+        ),
+        const SizedBox(height: 16.0),
+        Column(
+          children: [
+            Text(
+                'Approved Loan Amount: ${_loanAmountResult != 0 ? _loanAmountResult : "--"} €'),
+            const SizedBox(height: 8.0),
+            Text(
+                'Approved Loan Period: ${_loanPeriodResult != 0 ? _loanPeriodResult : "--"} months'),
+            const SizedBox(height: 8.0),
+            if (_errorMessage.isNotEmpty)
               Text(
-                  'Approved Loan Amount: ${_loanAmountResult != 0 ? _loanAmountResult : "--"} €'),
-              const SizedBox(height: 8.0),
-              Text(
-                  'Approved Loan Period: ${_loanPeriodResult != 0 ? _loanPeriodResult : "--"} months'),
-              Visibility(
-                  visible: _errorMessage != '',
-                  child: Text(_errorMessage, style: errorMedium))
-            ],
-          ),
-        ],
-      ),
+                'Error: $_errorMessage',
+                style: const TextStyle(color: Colors.red),
+              ),
+          ],
+        ),
+      ],
     );
   }
 }

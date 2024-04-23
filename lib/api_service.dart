@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 // ApiService is a class that provides methods for making API calls
 // to the decision engine.
 class ApiService {
-  final String _baseUrl = 'http://localhost:8080';
+  final String _baseUrl = 'http://10.0.2.2:8080';
   String responseAmount = '';
   String responsePeriod = '';
   String responseError = '';
